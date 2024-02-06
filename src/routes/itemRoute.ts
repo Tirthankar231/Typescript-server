@@ -1,12 +1,14 @@
-// src/routes/itemRoutes.ts
+// src/routes/itemRoute.ts
 import express from 'express';
-import { createItem, getItems, updateItem, deleteItem } from '../controllers/itemController';
+import { ItemController } from '../controllers/itemController';
 
 const router = express.Router();
+const itemController = new ItemController();
 
-router.post('/items', createItem);
-router.get('/items', getItems);
-router.put('/items/:id', updateItem);
-router.delete('/items/:id', deleteItem);
+router.post('/items', itemController.createItem);
+router.get('/items', itemController.getAllItems)
+router.put('/items/:id', itemController.updateItem)
+router.delete('/items/:id', itemController.deleteItem)
+router.get('/items/:id', itemController.getItemById)
 
 export default router;

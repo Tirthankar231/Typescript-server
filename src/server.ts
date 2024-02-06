@@ -1,13 +1,16 @@
-// src/server.ts
+// src/index.ts
 import express from 'express';
-import itemRoutes from '../src/routes/itemRoute';
+import bodyParser from 'body-parser';
+import itemRouter from '../src/routes/itemRoute';
 
 const app = express();
 const port = 3000;
 
-app.use(express.json());
-app.use('/api', itemRoutes);
+app.use(bodyParser.json({ limit: '50mb' }));
+
+// Use your routes
+app.use('/api', itemRouter);
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server running at port - http://127.0.0.1:${port}`);
 });
